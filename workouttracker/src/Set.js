@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Set = ({ weight, repsAttempt, repsCompleted }) => {
+const Set = ({ set }) => {
   const [values, setValues] = useState({
     weight: null,
     repsAttempt: null,
     repsCompleted: null,
   });
+
+  // useEffect(() => {
+  //   setValues(set)
+  // }, [set])
 
   const handleChange = (event) => {
     setValues((values) => ({
