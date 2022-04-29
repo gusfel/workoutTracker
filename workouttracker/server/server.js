@@ -11,6 +11,9 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header(
+    "Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE"
+  );
   next();
 });
 
@@ -48,6 +51,23 @@ app.post("/set", (req, res) => {
         return console.error('Error executing query', err.stack)
       }
       res.send(result.rows[0].id)
+    })
+  })
+})
+
+app.patch("/set", (req, res) => {
+  const {setId, column, value} = req.body;
+  const query = `UPDATE SET set ${column} = ${Number(value)} where id = ${Number(setId)}`
+  db.connect((err, client, release) => {
+    if (err) {
+      return console.error('Error acquiring client', err.stack)
+    }
+    client.query(query, (err, result) => {
+      release()
+      if (err) {
+        return console.error('Error executing query', err.stack)
+      }
+      res.send('success')
     })
   })
 })
