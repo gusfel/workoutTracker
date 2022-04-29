@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 
 const Set = ({ set }) => {
   const [values, setValues] = useState({
+    exerciseId: set.exerciseId,
     weight: null,
     repsAttempt: null,
     repsCompleted: null,
   });
 
-  // useEffect(() => {
-  //   setValues(set)
-  // }, [set])
+  useEffect(() => {
+    setValues(set)
+  }, [set])
 
   const handleChange = (event) => {
     setValues((values) => ({

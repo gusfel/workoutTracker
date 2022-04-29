@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import Exercise from './Exercise'
+import axios from 'axios';
 import './App.css';
 
 function App() {
   const [exercises, setExercises] = useState([])
   const [newExercise, setNewExercise] = useState('')
-  const addExercise = name => {
-    setExercises([...exercises, <Exercise key={`${name}-${new Date()}`} exerciseName={name}/>])
+  const addExercise = ( name, id) => {
+    setExercises([...exercises, <Exercise key={`${name}-${new Date()}`} exerciseName={name} id={id}/>])
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addExercise(newExercise)
+    axios.post('http://localhost:3010/exercise', {exerciseName: newExercise})
+    .then(res => {
+      addExercise(newExercise, res.data)
+    })
     setNewExercise('')
   }
   const handleChange = (event) => {
