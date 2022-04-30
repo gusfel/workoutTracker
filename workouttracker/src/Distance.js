@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Set({ setId }) {
+function Distance({ setId, exerciseName }) {
   const [values, setValues] = useState({
     setId,
-    weight: null,
-    reps_attempted: null,
-    reps_completed: null,
+    distance: null,
+    time: null,
+    elevation: null,
   });
 
   const handleChange = (event) => {
     const column = event.target.name;
     const value = Number(event.target.value);
-    axios.patch('http://localhost:3010/set', {
+    axios.patch('http://localhost:3010/distance', {
       setId,
       column,
       value,
@@ -28,32 +28,33 @@ function Set({ setId }) {
   };
   return (
     <div>
+      <h2>{exerciseName}</h2>
       <input
         className="entryData"
         type="number"
-        placeholder="Weight"
-        name="weight"
-        value={values.weight || ''}
+        placeholder="Distance"
+        name="distance"
+        value={values.distance || ''}
         onChange={handleChange}
       />
       <input
         className="entryData"
         type="number"
-        placeholder="Reps Attempted"
-        name="reps_attempted"
-        value={values.reps_attempted || ''}
+        placeholder="Time in Minutes"
+        name="time"
+        value={values.time || ''}
         onChange={handleChange}
       />
       <input
         className="entryData"
         type="number"
-        placeholder="Reps Completed"
-        name="reps_completed"
-        value={values.reps_completed || ''}
+        placeholder="Elevation in Feet"
+        name="elevation"
+        value={values.elevation || ''}
         onChange={handleChange}
       />
     </div>
   );
 }
 
-export default Set;
+export default Distance;

@@ -4,11 +4,10 @@ CREATE DATABASE workout_tracker;
 
 \c workout_tracker;
 
-DROP TABLE IF EXISTS exercise;
-
 CREATE TABLE exercise (
  id BIGSERIAL,
- name VARCHAR
+ name VARCHAR,
+ deleted BOOLEAN
 );
 
 
@@ -19,10 +18,24 @@ CREATE TABLE set (
  exercise_id INTEGER,
  weight INTEGER,
  reps_attempted INTEGER,
- reps_completed INTEGER
+ reps_completed INTEGER,
+ deleted BOOLEAN
 );
 
 
 ALTER TABLE set ADD CONSTRAINT set_pkey PRIMARY KEY (id);
 
+CREATE TABLE distance (
+ id BIGSERIAL,
+ exercise_id INTEGER,
+ distance INTEGER,
+ time INTEGER,
+ elevation INTEGER,
+ deleted BOOLEAN
+);
+
+
+ALTER TABLE distance ADD CONSTRAINT distance_pkey PRIMARY KEY (id);
+
 ALTER TABLE set ADD CONSTRAINT set_exercise_id_fkey FOREIGN KEY (exercise_id) REFERENCES exercise(id);
+ALTER TABLE distance ADD CONSTRAINT distance_exercise_id_fkey FOREIGN KEY (exercise_id) REFERENCES exercise(id);
