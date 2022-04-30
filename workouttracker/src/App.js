@@ -39,15 +39,15 @@ function App() {
   };
   const form = (
     <form onSubmit={handleSubmit}>
-      <label>
+      <label htmlFor="typeOfWorkout">
         What type of workout
         <select value={type} onChange={handleDropdownChange}>
-          <option value="none" />
+          <option aria-label="none" value="none" />
           <option value="distance">Distance</option>
           <option value="sets">Sets</option>
         </select>
       </label>
-      <label>
+      <label htmlFor="exerciseName">
         Name
         <input type="text" value={newExercise} onChange={handleChange} />
       </label>
