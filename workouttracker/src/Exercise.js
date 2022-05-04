@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import Set from './Set';
 
@@ -19,5 +20,10 @@ function Exercise({ exerciseName, id }) {
     </div>
   );
 }
+
+Exercise.propTypes = {
+  id: PropTypes.number.isRequired,
+  exerciseName: PropTypes.string.isRequired,
+};
 
 export default Exercise;

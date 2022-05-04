@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 function Distance({ setId, exerciseName }) {
   const [values, setValues] = useState({
@@ -56,5 +57,10 @@ function Distance({ setId, exerciseName }) {
     </div>
   );
 }
+
+Distance.propTypes = {
+  setId: PropTypes.number.isRequired,
+  exerciseName: PropTypes.string.isRequired,
+};
 
 export default Distance;

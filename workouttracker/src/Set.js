@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 function Set({ setId }) {
@@ -55,5 +56,9 @@ function Set({ setId }) {
     </div>
   );
 }
+
+Set.propTypes = {
+  setId: PropTypes.number.isRequired,
+};
 
 export default Set;
