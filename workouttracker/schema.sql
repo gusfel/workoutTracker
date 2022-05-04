@@ -7,6 +7,7 @@ CREATE DATABASE workout_tracker;
 CREATE TABLE exercise (
  id BIGSERIAL,
  name VARCHAR,
+ date timestamp,
  deleted BOOLEAN
 );
 
